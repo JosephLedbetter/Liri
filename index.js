@@ -51,3 +51,22 @@ const searchConcert = () => {
         console.log(error.config);
     });
 }
+
+// full spotify api call
+const spotifySong = () => {
+    if (!searchQuery) {
+        searchQuery = "The Sign Ace of Base";
+    }
+    spotify.search({ type: 'track', query: searchQuery })
+    .then(function (response) {
+        for (let i = 0; i < 5; i++) {
+            let spotifyResults =
+            divider +
+            "\nArtist(s): " + response.tracks.items[i].artists[0].name +
+            "\nSong Name: " + response.tracks.items[i].name +
+            "\nPreview Link: " + response.tracks.items[i].preview_url +
+            "\nAlbum Name: " + response.tracks.items[i].album.name;
+
+        console.log(spotifyResults);
+    }
+})
