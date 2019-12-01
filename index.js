@@ -17,3 +17,22 @@ const searchConcert = () => {
     axios
     .get(apiQuery)
     .then(function (response) {
+
+        for (let i = 0; i < response.data.length; i++) {
+
+            // standard date
+            let dateTime = response.data[i].datetime;
+            let dateArr = dateTime.split("T");
+            let concertDate = moment(dateArr[0]).format("MM-DD-YYYY");
+
+            // concert results object
+            concertResults =
+                    divider +
+                    "\nVenue Name: " + response.data[i].venue.name +
+                    "\nVenue Location: " + response.data[i].venue.city +
+                    "\nDate of Concert: " + concertDate 
+
+                    console.log(concertResults);
+                }
+            })
+    
