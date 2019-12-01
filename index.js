@@ -1,5 +1,5 @@
 require("dotenv").config();
-const keys = require("./keys.js");
+const keys = require("./key.js");
 const spotifyapi = require("node-spotify-api");
 const spotify = new spotifyapi(keys.spotify);
 const fs = require("fs");
@@ -66,7 +66,6 @@ const spotifySong = () => {
             "\nSong Name: " + response.tracks.items[i].name +
             "\nPreview Link: " + response.tracks.items[i].preview_url +
             "\nAlbum Name: " + response.tracks.items[i].album.name;
-
         console.log(spotifyResults);
     }
 })
@@ -101,3 +100,23 @@ axios.get("https://www.omdbapi.com/?t=" + searchQuery + "&y=&plot=short&apikey=t
     });
 }
 
+const doThis = () => {
+
+    fs.readFile("bb.txt", "utf8", function(error, data) {
+        if (error) {
+            return console.log(error);
+        }
+        let dataArr = data.split(',');
+        spotifySong(dataArr[0], dataArr[1]);
+    })
+}
+
+if (command == "concert-this") {
+    searchConcert();
+} else if (command == "spotify-this-song") {
+    spotifySong();
+} else if (command == "movie-this") {
+    movieThis()
+} else if (command == "do-what-it-says") {
+    doThis();
+}
