@@ -10,3 +10,10 @@ let command = process.argv[2];
 let searchQuery = process.argv.slice(3).join("+");
 
 let divider = "\n-------------------------------------------\n";
+
+const searchConcert = () => {
+    let apiQuery = "https://rest.bandsintown.com/artists/" + searchQuery + "/events?app_id=codingbootcamp";
+
+    axios
+    .get(apiQuery)
+    .then(function (response) {
