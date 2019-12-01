@@ -70,3 +70,34 @@ const spotifySong = () => {
         console.log(spotifyResults);
     }
 })
+.catch(function (err) {
+    console.log(err);
+});
+}
+
+// omdb call for all relative data
+const movieThis = () => {
+    if(!searchQuery){
+        searchQuery = "Mr. Nobody";
+        console.log("\nIf you haven't watch Mr. Nobody, then you should: <http://www.imdb.com/title/tt0485947/>");
+        console.log("It's on Netlix!\n");
+    }
+axios.get("https://www.omdbapi.com/?t=" + searchQuery + "&y=&plot=short&apikey=trilogy")
+    .then(function(response) {
+            let movieResults = 
+                divider +
+                    "\nMovie Title: " + response.data.Title + 
+                    "\nRelease Year: " + response.data.Year +
+                    "\nIMDB Rating: " + response.data.imdbRating +
+                    "\nRotten Tomatoes Rating: " + response.data.Ratings[1].Value +
+                    "\nCountry Produced: " + response.data.Country +
+                    "\nLanguage: " + response.data.Language +
+                    "\nPlot: " + response.data.Plot +
+                    "\nActors/Actresses: " + response.data.Actors;
+            console.log(movieResults);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+}
+
